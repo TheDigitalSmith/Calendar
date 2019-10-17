@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Calendar</title>
+    <style>
+        body{
+            max-width: 768px;
+            margin: 0 auto;
+            background: #181818;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 50px;
+        }
+        #calendar{
+            width: 100%;
+            margin-bottom: 20px;
+            /* border: 1px solid white; */
+        }
+        #calendar .day{
+            width: 150px;
+            display: inline-block;
+            text-align: center;
+            min-height: 100px;
+            line-height: 100px;
+            border: 1px solid white;
+            cursor: pointer;
+        }
+        h1{
+            text-align: center;
+            margin-top: 20px;
+            color: #ef3d59;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        #addMeeting{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        #addMeeting div {
+            text-align: center;
+        }
+        input {
+            background: #ef3d59;
+            color: white;
+            border: 0px;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .isSelected{
+            color: #ef3d59;
+        }
+        #appointments {
+            display:none;
+        }
+        </style>
+    
+        <script>
+            window.onload = function(){
+                //we get a reference to the calendar div
+                var calendar = document.querySelector("#calendar");
+                //we add 30ish days to this specific calendar
+                
+                for(var i = 0; i < 30; i++){
+                    //1) create the div
+                    var cell = document.createElement("div");
+                    cell.className = "day"
+                    //2) add a sub element h3 to the div
+                    var h3 = document.createElement("h3");
+                    h3.innerText = i + 1
+                    cell.appendChild(h3)
+                    //3) append both to the DOM (calendar)
+                    calendar.appendChild(cell)
+                }
+            }
+        
+        </script>
+</head>
+
+<body>
+    <h1>Strive Calendar</h1>
+    <div id="calendar"></div>
+
+    <div id="appointments">
+        <h1>Appointments</h1>
+        <ul id="appointmentList"></ul>
+    </div>
+
+    <h1>Add Meeting</h1>
+    <div id="addMeeting">
+        <!-- Day, time, meeting name, "add button" -->
+        <div>
+            <h4>Day</h4>
+            <h4 id="newMeetingDay">Click on a day</h4>
+        </div>
+        <div>
+            <h4>Meeting Time</h4>
+            <input type="time" id="newMeetingTime" >
+        </div>
+        <div>
+            <h4>Meeting name</h4>
+            <input type="text" id="newMeetingName" placeholder="Meeting name">
+        </div>
+        <div>
+            <h4>Add</h4>
+            <input type="button" onClick="addMeeting()" value="Add Meeting">
+        </div>
+    </div>
+    
+</body>
+</html>
